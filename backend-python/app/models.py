@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, func, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, DateTime, func, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -14,15 +14,18 @@ class Sensor(Base):
 # Define the Reading model
 class Reading(Base):
     __tablename__ = "readings"
+    #...columns...
+    __table_args__ = (Index("idx_readings_sensor_ts", "sensor_id", "timestamp"),
+    )
     id = Column(Integer, primary_key=True, index=True)
-    sensor_id = Column(Integer, ForeignKey('sensors.id'), nullable=False)
-    timestamp = Column(DateTime(timezone=True), server_default=func.now())
-    acceleration_x = Column(Float, nullable=False)
-    acceleration_y = Column(Float, nullable=False)
-    acceleration_z = Column(Float, nullable=False)
-    gyroscope_x = Column(Float, nullable=False)
-    gyroscope_y = Column(Float, nullable=False)
-    gyroscope_z = Column(Float, nullable=False)
+    sensor_id = Column(Integer, ForeignKey("sensors.id"), index=True)  
+    timestamp = Column(DateTime(timezone=True), server_default=func.now(), index=True)
+    acceleration_x = Column(Float)
+    acceleration_y = Column(Float)
+    acceleration_z = Column(Float)
+    gyroscope_x = Column(Float)
+    gyroscope_y = Column(Float)
+    gyroscope_z = Column(Float)
 
     sensor = relationship("Sensor", back_populates="readings")
 

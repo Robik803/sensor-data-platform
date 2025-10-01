@@ -11,6 +11,12 @@ Base.metadata.create_all(bind=engine)
 # Initialize FastAPI app
 app = FastAPI(title= "Sensor Data API", description="API for managing sensor data", version="1.0.0")
 
+from sqlalchemy import text
+@app.get("/healthz")
+def healthz(db: Session = Depends(get_db)):
+    db.execute(text("SELECT 1"))
+    return {"status": "ok"}
+
 
 # Sensor Endpoints
 
