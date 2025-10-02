@@ -12,7 +12,7 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 # Construct the database URL
 database_url = os.getenv("DATABASE_URL")
 
-# Handle potential Render.com format for PostgreSQL
+# Render.com compatibility
 if database_url:
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)

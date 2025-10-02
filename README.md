@@ -1,6 +1,11 @@
 # Sensor Data Platform
 
-A compact backend to manage **inertial sensor** data (accelerometer/gyroscope).  
+A compact backend to manage **inertial sensor** data (accelerometer/gyroscope).
+
+**Demo:** https://sensor-data-platform.onrender.com/docs  
+**Source code:** https://github.com/Robik803/sensor-data-platform
+
+
 Built with **Python (FastAPI + SQLAlchemy + PostgreSQL)** and prepared to add a **Rust sensor simulator** later.
 
 > Goal: demonstrate backend skills, API design, and database handling in a small, extensible project.
@@ -93,6 +98,8 @@ Swagger UI: http://localhost:8000/docs
 Health: http://localhost:8000/healthz
 
 If the database takes a moment to boot, try the URLs again after a few seconds.
+
+👉 You can also test the API online here: https://sensor-data-platform.onrender.com/docs
 
 ---
 
